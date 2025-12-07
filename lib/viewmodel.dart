@@ -8,14 +8,18 @@ class FortuneViewModel {
 
   FortuneViewModel() {
     // ----- 質問ノード (0〜6) -----
-    node[0] = QuestionNode("あなたは行動的ですか？", 1, 2);               // 深さ1
-    node[1] = QuestionNode("初対面の人と話すのは得意ですか？", 3, 4);     // 深さ2 (YES側)
-    node[2] = QuestionNode("一人で過ごす時間が好きですか？", 5, 6);       // 深さ2 (NO側)
+    // 深さ1: 最初の質問
+    node[0] = QuestionNode("あなたは行動的ですか？", 1, 2);
+    
+    // 深さ2: 2番目の質問（YESとNOで分岐）
+    node[1] = QuestionNode("初対面の人と話すのは得意ですか？", 3, 4);     // YES側の分岐
+    node[2] = QuestionNode("一人で過ごす時間が好きですか？", 5, 6);       // NO側の分岐
 
-    node[3] = QuestionNode("計画を立ててから動くほうですか？", 7, 8);    // 深さ3
-    node[4] = QuestionNode("思いついたらすぐ行動に移しますか？", 9, 10); // 深さ3
-    node[5] = QuestionNode("コツコツと同じ作業を続けられますか？", 11, 12); // 深さ3
-    node[6] = QuestionNode("気分によって行動が変わりやすいほうですか？", 13, 14); // 深さ3
+    // 深さ3: 最後の質問（さらに分岐）
+    node[3] = QuestionNode("計画を立ててから動くほうですか？", 7, 8);    // YES→YES側
+    node[4] = QuestionNode("思いついたらすぐ行動に移しますか？", 9, 10); // YES→NO側
+    node[5] = QuestionNode("コツコツと同じ作業を続けられますか？", 11, 12); // NO→YES側
+    node[6] = QuestionNode("気分によって行動が変わりやすいほうですか？", 13, 14); // NO→NO側
 
     // ----- 結果ノード (7〜14) -----
     node[7]  = ResultNode("🔥", "エネルギータイプ", "情熱的でリーダーシップを発揮しやすいタイプです。");
